@@ -4,8 +4,8 @@ import pygame
 import requests
 
 
-def map2(z):
-    map_request = f"https://static-maps.yandex.ru/1.x/?ll=37.620070,55.753630&l=map&z={z}"
+def map2(x, y, z):
+    map_request = f"https://static-maps.yandex.ru/1.x/?ll={x},{y}&l=map&z={z}"
     response = requests.get(map_request)
     if not response:
         print("Ошибка выполнения запроса:")
@@ -17,8 +17,10 @@ def map2(z):
         file.write(response.content)
 
 
+x = 37.620070
+y = 55.753630
 z = 8
-map2(z)
+map2(x, y, z)
 map_file = "map.jfif"
 pygame.init()
 screen = pygame.display.set_mode((600, 450))
@@ -31,14 +33,13 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         result = pygame.key.get_pressed()
-        if result[pygame.K_UP]:
+        if result[pygame.K_PAGEUP]:
             if z < 17:
                 z += 1
-                map2(z)
-        if result[pygame.K_DOWN]:
+        if result[pygame.K_PAGEDOWN]:
             if z > 2:
                 z -= 1
-                map2(z)
+    map2(x, y, z)
     map_file = "map.jfif"
     screen.blit(pygame.image.load(map_file), (0, 0))
     pygame.display.flip()

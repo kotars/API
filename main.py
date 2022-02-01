@@ -39,6 +39,16 @@ while running:
         if result[pygame.K_PAGEDOWN]:
             if z > 2:
                 z -= 1
+        if result[pygame.K_LEFT]:
+            x -= 0.001
+        if result[pygame.K_RIGHT]:
+            x += 0.001
+        if result[pygame.K_UP]:
+            if y < 180:
+                y += 0.001
+        if result[pygame.K_DOWN]:
+            if y > 0:
+                y -= 0.001
     map2(x, y, z)
     map_file = "map.jfif"
     screen.blit(pygame.image.load(map_file), (0, 0))

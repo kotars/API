@@ -35,18 +35,16 @@ while running:
             if z < 17:
                 z += 1
                 map2(z)
-            print(z)
         if result[pygame.K_DOWN]:
-            if z > 0:
+            if z > 2:
                 z -= 1
                 map2(z)
-            print(z)
     map_file = "map.jfif"
     screen.blit(pygame.image.load(map_file), (0, 0))
     pygame.display.flip()
     clock.tick(50)
 
-    pygame.quit()
+pygame.quit()
 
 # Удаляем за собой файл с изображением.
 os.remove(map_file)

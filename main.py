@@ -6,7 +6,7 @@ import requests
 
 x = float(input())
 y = float(input())
-map_request = f"https://static-maps.yandex.ru/1.x/?ll={x},{y}&spn=20,20&l=sat"
+map_request = f"https://static-maps.yandex.ru/1.x/?ll={x},{y}&l=sat&z=8"
 response = requests.get(map_request)
 
 

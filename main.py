@@ -4,8 +4,8 @@ import pygame
 import requests
 
 
-def map2(x, y, z):
-    map_request = f"https://static-maps.yandex.ru/1.x/?ll={x},{y}&l=map&z={z}"
+def map2(x, y, z, l):
+    map_request = f"https://static-maps.yandex.ru/1.x/?ll={x},{y}&l={l}&z={z}"
     response = requests.get(map_request)
     if not response:
         print("Ошибка выполнения запроса:")
@@ -20,7 +20,8 @@ def map2(x, y, z):
 x = 37.620070
 y = 55.753630
 z = 8
-map2(x, y, z)
+l = "map"
+map2(x, y, z, l)
 map_file = "map.jfif"
 pygame.init()
 screen = pygame.display.set_mode((600, 450))
@@ -49,11 +50,18 @@ while running:
         if result[pygame.K_DOWN]:
             if y > 0:
                 y -= 0.001
-    map2(x, y, z)
+        if result[pygame.K_TAB]:
+            if l == 'map':
+                l = 'sat'
+            elif l == 'sat':
+                l = 'sat,skl'
+            else:
+                l = 'map'
+    map2(x, y, z, l)
     map_file = "map.jfif"
     screen.blit(pygame.image.load(map_file), (0, 0))
     pygame.display.flip()
-    clock.tick(50)
+    clock.tick(120)
 
 pygame.quit()
 

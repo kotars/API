@@ -50,13 +50,12 @@ while running:
         if result[pygame.K_DOWN]:
             if y > 0:
                 y -= 0.001
-        if result[pygame.K_TAB]:
-            if l == 'map':
-                l = 'sat'
-            elif l == 'sat':
-                l = 'sat,skl'
-            else:
-                l = 'map'
+        if result[pygame.K_1]:
+            l = 'map'
+        if result[pygame.K_2]:
+            l = 'sat'
+        if result[pygame.K_3]:
+            l = 'sat,skl'
     map2(x, y, z, l)
     map_file = "map.jfif"
     screen.blit(pygame.image.load(map_file), (0, 0))
